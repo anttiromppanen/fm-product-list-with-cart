@@ -8,10 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      font: {
+        sans: ["Red Hat Text", "sans-serif"],
+      },
+      colors: {
+        userRed: "hsl(14, 86%, 42%)",
+        userGreen: "hsl(159, 69%, 38%)",
       },
     },
   },
