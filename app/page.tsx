@@ -1,9 +1,8 @@
 import Card from '@/components/Card';
 import prisma from '../lib/prisma';
 import ShoppingCart from '@/components/ShoppingCart';
-// import Image from 'next/image';
 
-export const getItems = async () => {
+const getItems = async () => {
   const items = await prisma.item.findMany();
   return items;
 };
