@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,8 +12,14 @@ html {
   }
 }
 
-@layer tilities {
+@layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .btn-lg {
+    @apply bg-userRed rounded-full py-3 text-sm w-full mt-6 text-white hover:brightness-75
   }
 }
