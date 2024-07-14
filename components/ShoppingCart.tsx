@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { formatCurrency } from '@/helpers/helpers';
-import { useOverlay } from '@/store/useOverlay';
-import { useShoppingCart } from '@/store/useShoppingCart';
-import { IItem } from '@/types/types';
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import { useMemo } from 'react';
-import OrderConfirmationOverlay from './OrderConfirmationOverlay';
-import OrderTotal from './OrderTotal';
+import { formatCurrency } from "@/helpers/helpers";
+import { useOverlay } from "@/store/useOverlay";
+import { useShoppingCart } from "@/store/useShoppingCart";
+import { IItem } from "@/types/types";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { useMemo } from "react";
+import OrderConfirmationOverlay from "./OrderConfirmationOverlay";
+import OrderTotal from "./OrderTotal";
 
 function ShoppingCartItem({ item, amount }: { item: IItem; amount: number }) {
   const removeItem = useShoppingCart((state) => state.removeItem);
@@ -76,7 +76,9 @@ function ShoppingCart() {
 
   return (
     <div className="p-6 rounded-lg bg-white h-fit mt-6 md:mt-0">
-      {orderConfirmationIsOpen && <OrderConfirmationOverlay items={items} />}
+      <AnimatePresence>
+        {orderConfirmationIsOpen && <OrderConfirmationOverlay items={items} />}
+      </AnimatePresence>
       <h2 className="text-userRed font-bold text-xl mb-6">
         Your Cart ({numOfItems})
       </h2>
@@ -124,7 +126,7 @@ function ShoppingCart() {
               />
             </svg>
             <p>
-              This is a <span className="font-semibold">carbon-neutral</span>{' '}
+              This is a <span className="font-semibold">carbon-neutral</span>{" "}
               delivery
             </p>
           </div>

@@ -1,10 +1,11 @@
-import { formatCurrency } from '@/helpers/helpers';
-import { IItem } from '@/types/types';
-import Image from 'next/image';
-import { useMemo } from 'react';
-import OrderTotal from './OrderTotal';
-import { useShoppingCart } from '@/store/useShoppingCart';
-import { useOverlay } from '@/store/useOverlay';
+import { formatCurrency } from "@/helpers/helpers";
+import { IItem } from "@/types/types";
+import Image from "next/image";
+import { useMemo } from "react";
+import OrderTotal from "./OrderTotal";
+import { useShoppingCart } from "@/store/useShoppingCart";
+import { useOverlay } from "@/store/useOverlay";
+import { AnimatePresence, motion } from "framer-motion";
 
 function OrderItem({ item, amount }: { item: IItem; amount: number }) {
   const { imgThumb, price, description } = item;
@@ -46,6 +47,10 @@ function OrderConfirmationOverlay({
   const closeOrderConfirmation = useOverlay(
     (state) => state.closeOrderConfirmation
   );
+  const orderConfirmationIsOpen = useOverlay(
+    (state) => state.orderConfirmationIsOpen
+  );
+
   const total = useShoppingCart((state) => state.totalAmount);
   const resetItems = useShoppingCart((state) => state.resetItems);
   const itemsArray = useMemo(() => Array.from(items.values()), [items]);
@@ -56,12 +61,20 @@ function OrderConfirmationOverlay({
   };
 
   return (
-    <div className="fixed left-0 top-0 w-full h-dvh md:h-screen flex items-center justify-center bg-black/40">
-      <div
+    <div
+      className="
+      fixed left-0 z-50 top-0 w-full h-dvh md:h-screen flex items-center justify-center bg-black/40
+      "
+    >
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -50, transition: { duration: 0.2 } }}
+        transition={{ duration: 0.3 }}
         className="
         bg-white rounded-lg w-[calc(100%-16px)] h-[calc(100%-16px)] overflow-y-auto max-h-[700px] 
-        md:h-auto md:w-[500px] px-6 py-8
-        "
+          md:h-auto md:w-[500px] px-6 py-8
+          "
       >
         <Image
           src="/images/icon-order-confirmed.svg"
@@ -88,7 +101,7 @@ function OrderConfirmationOverlay({
         >
           Start New Order
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 }
