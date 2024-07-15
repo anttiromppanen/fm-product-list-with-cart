@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import Image from "next/image";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 const buttonStyles =
-  'w-1/2 md:w-3/5 md:text-xs lg:text-sm items-center py-3 px-2 text-sm flex font-medium absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-full';
+  "w-1/2 md:w-3/5 md:text-xs lg:text-sm items-center py-3 px-2 text-sm flex font-medium absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-full";
 
 export function AmountSelectorButton({
   amount,
@@ -74,12 +74,7 @@ export function AddToCartButton({
     bg-white border border-rose-950
       `}
     >
-      <Image
-        src="/images/icon-add-to-cart.svg"
-        alt="Add to Cart"
-        width={21}
-        height={20}
-      />
+      <Image src="/images/icon-add-to-cart.svg" alt="" width={21} height={20} />
       Add to Cart
     </button>
   );
